@@ -32,12 +32,23 @@
       display: flex;
       justify-content: center;
       width: 100%;
-      input {
-        width: 16px;
-        height: 16px;
-        min-width: 0;
-        color: $primary;
-      }
+    }
+    &__pagination {
+          display: flex;
+          margin-inline: 5px;
+          width: 16px;
+          height: 16px;
+          background-color: #FFF;
+          border-radius: 100%;
+          &--active {
+            display: flex;
+            margin-inline: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 100%;
+            background-color: $primary;
+            transition: all 1s;
+          }
     }
     &__description {
       left: 0;
