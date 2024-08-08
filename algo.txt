@@ -55,18 +55,22 @@ Puis on a un div "pagination" qui contient .... (revoir plus tard)
 
 
 
-PAR CONTRE PROBLEME D'AFFICHAGE J'AI SEULEMENT LA PAGE 1 QUI EST FILTRER LA 2eme N'EST PAS CALCULER
 Apres verification les filtres marchent, l'erreur etait du au faite que dans le composant Events
 filteredEvents manquer de cette condition ((!type || event.type === type) &&), modif aussi du ternaire
 car il renvoyer deux fois la meme valeur (pas genant pour la fonctionnaliter des filtres mais plus propre)
 Et que dans le composant Select il manquait dans l'élément input de selection.map (onChange={() => { onChange(s) }}).
+PAR CONTRE PROBLEME D'AFFICHAGE J'AI SEULEMENT LA PAGE 1 QUI EST FILTRER LA 2eme N'EST PAS CALCULER, donc pour 
+ce faire separation de la varaible filteredEvents en deux variable, une qui calcule les conditions de filtrages
+(filteredByType) et une qui s'occupe de l'affichage des deux pages (filteredEvents) en faisant un slice de (filteredByType)
 
 
-
+voir passage getmonth d'un element enfant a parent 
+voir modale les dates des evenements sont incorrect et certains restent vide (dit dans la video mais non present)
 voir aussi avec la modale mettre un background opaque 
 composant Events, voir avec uselocation pour souligner les numero d'index de page 
 
+voir pour slider faire cle unique avec index du tableau puis desactiver erreur eslint
 
 note depuis dernier commit: 
-ameloriation du "select filter" avec un ajout d'animation + une meilleur logique de fonctionnement. Filter devenu
-fonctionnel par contre ils filtrent que la page 1 (probleme).  
+mise en place d'un seconde variable pour pouvoir filtrer sur les 2 page et non juste la premiere, chemin de la props periode
+entierment refait avec ajout de substring

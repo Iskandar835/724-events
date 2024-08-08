@@ -5,6 +5,7 @@ import { useData } from "../../contexts/DataContext";
 import Modal from "../Modal";
 import ModalEvent from "../ModalEvent";
 
+
 import "./style.css";
 
 const PER_PAGE = 9;
@@ -14,23 +15,22 @@ const EventList = () => {
   const [type, setType] = useState()
   const [currentPage, setCurrentPage] = useState(1)
 
-  const filteredEvents = (
-    data?.events || []
-    ).filter((event, index) => (!type || event.type === type) &&
-           (currentPage - 1) * PER_PAGE <= index &&
-           PER_PAGE * currentPage > index
-    );
+  const filteredByType = (data?.events || []).filter(event => !type || event.type === type);
+
+  const filteredEvents = filteredByType.slice(
+    (currentPage - 1) * PER_PAGE,
+    currentPage * PER_PAGE
+  );
   
   const changeType = (evtType) => {
     setCurrentPage(1)
     setType(evtType)
   };
 
- 
- 
   const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1;  
   const typeList = new Set(data?.events.map((event) => event.type));
 
+  
 
   return (
     <>
@@ -52,7 +52,7 @@ const EventList = () => {
                     onClick={() => setIsOpened(true)}
                     imageSrc={event.cover}
                     title={event.title}
-                    date={new Date(event.date)}
+                    periode={event.periode.substring(9)}
                     label={event.type}
                   />
                 )}
