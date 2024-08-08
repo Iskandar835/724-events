@@ -27,7 +27,7 @@
   min-height: 60px;
   display: flex;
   position: absolute;
-  z-index: 1;
+  z-index: 1; 
   ul {
     position: relative;
     list-style: none;
@@ -42,12 +42,14 @@
       margin: 0;
       text-transform: capitalize;
     }
+
   }
   input {
     width: 16px;
     height: 16px;
     min-width: 16px;
     margin-right: 16px;
+    cursor: pointer;
   }
   button {
     border: none;
@@ -55,8 +57,11 @@
     height: 32px;
     margin-top: 16px;
     margin-right: 8px;
+    cursor: pointer;
+    transition: all  250ms ease;
     &.close {
       transform: rotate(180deg);
+      transition: all  250ms ease;
     }
   }
   .SelectTitle {

@@ -2,8 +2,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useState } from "react";
 import PropTypes from "prop-types";
-
 import "./style.scss";
+
 
 const Select = ({
   selection,
@@ -23,37 +23,40 @@ const Select = ({
   return (
     <div className={`SelectContainer ${type}`} data-testid="select-testid">
       {label && <div className="label">{label}</div>}
-      <div className="Select">
+      <div className= "Select">
         <ul>
           <li className={collapsed ? "SelectTitle--show" : "SelectTitle--hide"}>
             {value || (!titleEmpty && "Toutes")}
           </li>
           {!collapsed && (
-            <>
+            <> 
               {!titleEmpty && (
-                <li onClick={() => changeValue(null)}>
+                <li onClick={() =>{ changeValue(null); setCollapsed(!collapsed)}}> 
                   <input defaultChecked={!value} name="selected" type="radio" />{" "}
                   Toutes
                 </li>
               )}
               {selection.map((s) => (
-                <li key={s} onClick={() => changeValue(s)}>
+                <li key={s} onClick={() => changeValue(s) }> 
                   <input
                     defaultChecked={value === s}
                     name="selected"
                     type="radio"
-                  />{" "}
+                    onChange={() => {  
+                      onChange(s);
+                    }}
+                  />{" "}   { /* cette espace ne sert peut etre a rien */ }
                   {s}
                 </li>
               ))}
-            </>
+            </> 
           )}
         </ul>
         <input type="hidden" value={value || ""} name={name} />
         <button
           type="button"
           data-testid="collapse-button-testid"
-          className={collapsed ? "open" : "close"}
+          className= {!collapsed ? "" : "close"}
           onClick={(e) => {
             e.preventDefault();
             setCollapsed(!collapsed);

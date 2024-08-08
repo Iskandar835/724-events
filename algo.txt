@@ -1,0 +1,72 @@
+D'ABORD COMPRENDRE LE CODE DANS TOUT SES DETAILS ET ENSUITE PROPOSER DES SOLUTIONS:
+
+
+Description integrale Composant Select: 
+
+En premier on a un composant "Select" qui fabrique un collapse generic (utiliser dans 
+le formulaire aussi). Il reçois plusieurs props (6 en tout). 
+Ensuite des states sont mis en place, un pour la value et un qui initialise "truly" le collapse. 
+On a ensuite une fonction changeValue qui est utiliser pour gerer la modification de la valeur du collapse (soirée, experience ..)
+Maintenant place a l'élément return, il contient une premiere div "SelectContainer" qui va englober tout le collapse
+Ensuite si label est true alors il fabrique une div qui va contenir le label,
+Ensuite on a une div "Select" qui va englober le reste du code, dans cette div on a une ul qui contient un premier
+li qui prend un parametre que si collapse est truly alors le titre est montrer sinon il est cacher. Dans cette 
+li on a soit une value OU si titleEmpty est falsy alors il affiche la chaine "Toutes".
+Maintenant on passe au reste de se container select car il va etre fait dynamiquement, on a un gros bout 
+de code qui est contenu dans une condition : si collapse est falsy (donc ouvert) voici ce qui passe : 
+On a un premier li qui est entourer de la condition si titleEmpty est falsy, il nous permet d'afficher par 
+defaut le filtre "Toutes" et aussi de fabriquer un input ("Toutes") qui nous permettera de le selectionner. 
+Ensuite on a un selection.map qui va nous mapper tout les element present dans selection ce qui va 
+nous permettre d'avoir un li contenant un input radio pour chaque filtre. Cette li en Onclick il 
+prend la fonction changeValue. 
+Maintenant la ul se ferme 
+Ensuite on a un input que lui et ses props n'ont l'aire de servir a rien 
+Et pour finir on a un button qui est notre chevron qui prend en classe des conditons en cas de 
+collapse falsy ou truly et en onClick il change l'etat de collapsed.     
+
+Conclusion: 
+Le composant Select est un composant generique qui sera utiliser aussi dans le formulaire, il 
+est bien preparer en prop et en logique, il n'a quasiment aucun dure. Je ne pense pas que le probleme
+des gestions de filtres vienne d'ici. 
+ 
+
+Decription integrale Composant Events:
+
+En premier on a une constante qui contient le numero 9, elle va nous permettre de reglé l'affichage 
+des travaux a neuf par page.
+Ensuite on rentre dans le composant EventList, il contient le hooks perso useData qui permet de recuperer les datas,
+un state est initialiser pour le type, un autre est initialiser a (1) pour la page actuelle. 
+Ensuite on a une variable "filteredEvents" (je pense que la crotte vient de la) qui permet de filtrer 
+les events et de verifier si il sont present dan sla page actuelle. 
+Ensuite on a la variable changeType qui va nous permettre de changer le type d'evenement selectionner, lors de la 
+selection la page est réinitialisée a 1 et le type est mis a jour avec setType.
+Ensuite on a la variable pageNumber qui calcule le nombre de page pour afficher les evenements filtrés.
+Ensuite on a la variable typeList qui est un ensemble (Set) contenant tous les types d'événements uniques.
+Maintent on rentre dans le return:
+En premier on a une div qui est preparer au cas ou on une erreur truly
+Ensuite on a une condition si data est null alors "loading" s'affiche sinon il s'affiche : 
+Un h3, notre composant Select qui prend en prop selection la variable typeList puis en prop onChange la 
+variable changeType. 
+Ensuite on a une div "ListContainer", a l'interieur de celle ci on a filtered.map qui va appliquer un modale 
+pour chaque events et une event cards pour chaque event. 
+Puis on a un div "pagination" qui contient .... (revoir plus tard)
+
+
+
+
+
+PAR CONTRE PROBLEME D'AFFICHAGE J'AI SEULEMENT LA PAGE 1 QUI EST FILTRER LA 2eme N'EST PAS CALCULER
+Apres verification les filtres marchent, l'erreur etait du au faite que dans le composant Events
+filteredEvents manquer de cette condition ((!type || event.type === type) &&), modif aussi du ternaire
+car il renvoyer deux fois la meme valeur (pas genant pour la fonctionnaliter des filtres mais plus propre)
+Et que dans le composant Select il manquait dans l'élément input de selection.map (onChange={() => { onChange(s) }}).
+
+
+
+voir aussi avec la modale mettre un background opaque 
+composant Events, voir avec uselocation pour souligner les numero d'index de page 
+
+
+note depuis dernier commit: 
+ameloriation du "select filter" avec un ajout d'animation + une meilleur logique de fonctionnement. Filter devenu
+fonctionnel par contre ils filtrent que la page 1 (probleme).  
