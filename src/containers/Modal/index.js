@@ -9,16 +9,17 @@ const Modal = ({ opened, Content, children }) => {
     <>
       {children({ isOpened, setIsOpened })}
       {isOpened && (
-        <div className="modal">
+        <div className="modal__container">
+          <div className="modal__background"/>
           <div className="content">
-            {Content}
-            <button
-              type="button"
-              data-testid="close-modal"
-              onClick={() => setIsOpened(false)}
-            >
-              <Icon name="close" />
-            </button>
+              {Content}
+              <button
+                type="button"
+                data-testid="close-modal"
+                onClick={() => setIsOpened(false)}
+              > 
+                <Icon name="close" />
+              </button>
           </div>
         </div>
       )}

@@ -50,8 +50,8 @@ const EventList = () => {
                 {({ setIsOpened }) => (
                   <EventCard
                     onClick={() => setIsOpened(true)}
-                    imageSrc={event.cover}
-                    title={event.title}
+                    imageSrc={event.cover || "../../public/images/image_par_defaut.webp"}
+                    title={event.title || "Titre indisponible"}
                     periode={event.periode.substring(9)}
                     label={event.type}
                   />
@@ -61,8 +61,7 @@ const EventList = () => {
           </div>
           <div className="Pagination">
             {[...Array(pageNumber || 0)].map((_, n) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <a key={n} href="#events" onClick={() => setCurrentPage(n + 1)}>
+              <a key={n.id} href="#events" onClick={() => setCurrentPage(n + 1)}>
                 {n + 1}
               </a>
             ))}

@@ -51,10 +51,7 @@ Ensuite on a une div "ListContainer", a l'interieur de celle ci on a filtered.ma
 pour chaque events et une event cards pour chaque event. 
 Puis on a un div "pagination" qui contient .... (revoir plus tard)
 
-
-
-
-
+Probleme filter REGLER:
 Apres verification les filtres marchent, l'erreur etait du au faite que dans le composant Events
 filteredEvents manquer de cette condition ((!type || event.type === type) &&), modif aussi du ternaire
 car il renvoyer deux fois la meme valeur (pas genant pour la fonctionnaliter des filtres mais plus propre)
@@ -63,14 +60,31 @@ PAR CONTRE PROBLEME D'AFFICHAGE J'AI SEULEMENT LA PAGE 1 QUI EST FILTRER LA 2eme
 ce faire separation de la varaible filteredEvents en deux variable, une qui calcule les conditions de filtrages
 (filteredByType) et une qui s'occupe de l'affichage des deux pages (filteredEvents) en faisant un slice de (filteredByType)
 
+Probleme date event cards REGLER: 
+Chemin de la props "date" entierement modifier et remplacer par periode + ajout de substring pour recuperer que le mois de la DATA
+ajout de style et d'un modale background pour rendre la modale plus propre
 
-voir passage getmonth d'un element enfant a parent 
-voir modale les dates des evenements sont incorrect et certains restent vide (dit dans la video mais non present)
-voir aussi avec la modale mettre un background opaque 
-composant Events, voir avec uselocation pour souligner les numero d'index de page 
 
-voir pour slider faire cle unique avec index du tableau puis desactiver erreur eslint
+Probleme erreur dans la console PAS REGLER: 
+La plupart des erreurs dans la console sont peut etre du a l'appel async de DataProvider, donc il faudrait 
+peut etre ne plus rendre async DataProvider (revenir dessus plus tard), expliquation:
+Pour le composant events (
+    imagesrc, title sont des props required mais au moment de l'affichage ils sont undefined
+    pendant peut etre une fraction de seconde mais l'errreur s'affiche, surement a cause de async
+    (solution en cours)
+)
+Pour le composant slider(
+    probleme de key unique pour les elements mapper comme les images du slider et le bullet point,
+    apres plusieurs essaie avec meme un essaie de key sur l'index (contrage d'erreur) l'erreur
+    persiste car surement async mais trop de temps
+)
+
+
 
 note depuis dernier commit: 
-mise en place d'un seconde variable pour pouvoir filtrer sur les 2 page et non juste la premiere, chemin de la props periode
-entierment refait avec ajout de substring
+Ajout d'un modale background et petite modif scss de la modale pour un result plus propre.
+Ajout nouvelle photo car essaie sur possible reparation erreur (prop undifined) 
+slider optimiser, overflow and logique defilement 
+
+A FAIRE ASAP: 
+peut etre passer sur formulaire ou regler probleme async. 
