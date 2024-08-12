@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
+
 import { useState } from "react";
 import PropTypes from "prop-types";
 import "./style.scss";
@@ -31,13 +31,14 @@ const Select = ({
           {!collapsed && (
             <> 
               {!titleEmpty && (
-                <li onClick={() =>{ changeValue(null); setCollapsed(!collapsed)}}> 
+                <li onClick={() =>{ changeValue(null); setCollapsed(!collapsed)}}
+                    onKeyDown={() =>{ changeValue(null); setCollapsed(!collapsed)}}>
                   <input defaultChecked={!value} name="selected" type="radio" />{" "}
                   Toutes
                 </li>
               )}
               {selection.map((s) => (
-                <li key={s} onClick={() => changeValue(s) }> 
+                <li key={s} onClick={() => changeValue(s) } onKeyDown={ () => changeValue(s) }> 
                   <input
                     defaultChecked={value === s}
                     name="selected"
@@ -45,7 +46,7 @@ const Select = ({
                     onChange={() => {  
                       onChange(s);
                     }}
-                  />{" "}   { /* cette espace ne sert peut etre a rien */ }
+                  />
                   {s}
                 </li>
               ))}

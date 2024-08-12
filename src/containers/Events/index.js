@@ -50,8 +50,8 @@ const EventList = () => {
                 {({ setIsOpened }) => (
                   <EventCard
                     onClick={() => setIsOpened(true)}
-                    imageSrc={event.cover || "../../public/images/image_par_defaut.webp"}
-                    title={event.title || "Titre indisponible"}
+                    imageSrc={event.cover}
+                    title={event.title}
                     periode={event.periode.substring(9)}
                     label={event.type}
                   />

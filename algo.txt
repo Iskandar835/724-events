@@ -51,6 +51,27 @@ Ensuite on a une div "ListContainer", a l'interieur de celle ci on a filtered.ma
 pour chaque events et une event cards pour chaque event. 
 Puis on a un div "pagination" qui contient .... (revoir plus tard)
 
+
+******************************************************
+
+description composant DataContext : 
+Tout ce composant est utiliser pour pouvoir gerer l'utilisation des Data et les transmettre au enfants sans 
+passer par les props. A noter qu'il est programer de la meme façon que pourrais recuperer des Data sur une api
+via un appel reseau (methode fetch). Chose qui est inutile car nos données sont deja presente en dur dans notre dossiers
+dans le fichier (events.json).
+La solution consisterais a changer tout les appels fetch asynchrone par une simple recuperation de Data via un import 
+du fichier events.json car la plupart des erreurs dans la console sont peut etre lié au faite que que l'ai data sont demander 
+mais il y l'async qui bloque. 
+
+
+A FAIRE TRES IMPORTANT !! IL PERMET DE COMPRENDRE LA RECUPERATION DES DATA ET AUSSI COMMENT REGLER LE PROBLEME ASYNC 
+QUI NOUS RENVOI LES ERREUR EN CONSOLE. 
+
+******************************************************
+
+
+
+
 Probleme filter REGLER:
 Apres verification les filtres marchent, l'erreur etait du au faite que dans le composant Events
 filteredEvents manquer de cette condition ((!type || event.type === type) &&), modif aussi du ternaire
@@ -82,9 +103,8 @@ Pour le composant slider(
 
 
 note depuis dernier commit: 
-Ajout d'un modale background et petite modif scss de la modale pour un result plus propre.
-Ajout nouvelle photo car essaie sur possible reparation erreur (prop undifined) 
-slider optimiser, overflow and logique defilement 
+amelioration composant Select (li adapter pour responsive mais eslint-disable quand meme mis), voir a la fin si on a du temps 
+pour transformer <li> en <button>. 
 
 A FAIRE ASAP: 
-peut etre passer sur formulaire ou regler probleme async. 
+peut etre passer sur formulaire ou regler probleme async (ne pas oublier de mettre Events au propre)
