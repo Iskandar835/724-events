@@ -1,6 +1,6 @@
 import Menu from "../../containers/Menu";
 import ServiceCard from "../../components/ServiceCard";
-import EventCard from "../../components/EventCard";
+import FooterCard from "../../components/FooterCard";
 import PeopleCard from "../../components/PeopleCard";
 
 import "./style.scss";
@@ -10,10 +10,9 @@ import Logo from "../../components/Logo";
 import Icon from "../../components/Icon";
 import Form from "../../containers/Form";
 import Modal from "../../containers/Modal";
-import { useData } from "../../contexts/DataContext";
 
-const Page = () => {
-  const {last} = useData()
+
+function Page () {
   return <>
     <header>
       <Menu />
@@ -116,13 +115,7 @@ const Page = () => {
     <footer className="row">
       <div className="col presta">
         <h3>Notre derniére prestation</h3>
-        <EventCard
-          imageSrc={last?.cover}
-          title={last?.title}
-          date={new Date(last?.date)}
-          small
-          label="boom"
-        />
+          <FooterCard />
       </div>
       <div className="col contact">
         <h3>Contactez-nous</h3>

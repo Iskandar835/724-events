@@ -38,11 +38,11 @@ EventCard.propTypes = {
 
 EventCard.defaultProps = {
   imageSrc: "/images/image_par_defaut.png",
-  imageAlt: "image",
+  imageAlt: "image de l'evenement",
   periode: "date",
   title: "Nom de l'évenement",
-  small: false,
-  label: "ok"
+  label: "type d'évenement",
+  small: false
 }
 
 export default EventCard;

@@ -103,8 +103,8 @@ Pour le composant slider(
 
 
 note depuis dernier commit: 
-amelioration composant Select (li adapter pour responsive mais eslint-disable quand meme mis), voir a la fin si on a du temps 
-pour transformer <li> en <button>. 
+
 
 A FAIRE ASAP: 
-peut etre passer sur formulaire ou regler probleme async (ne pas oublier de mettre Events au propre)
+- probleme async (en cours d'experimentation) (ne pas oublier de mettre Events au propre)
+- regler probleme formulaire 
