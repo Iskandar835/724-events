@@ -43,6 +43,6 @@ EventCard.defaultProps = {
   title: "Nom de l'évenement",
   label: "type d'évenement",
   small: false
-}
+};
 
 export default EventCard;

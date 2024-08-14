@@ -5,6 +5,7 @@ import { getMonth } from "../../helpers/Date";
 import "./style.scss";
 
 const Slider = () => {
+ 
   const { data } = useData();
   const [index, setIndex] = useState(0);
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
@@ -22,33 +23,31 @@ const Slider = () => {
 
   return (
     <div className="SlideCardList">
-      {byDateDesc?.map((event, idx) => (
-       <> 
+      {byDateDesc?.map((slider, idx) => (
           <div
-            key={event.id}
+            key={slider.id}
             className={`SlideCard SlideCard--${
               index === idx ? "display" : "hide"
             }`}
           >
-            <img src={event.cover} alt="forum" />
+            <img src={slider.cover} alt="forum" />
             <div className="SlideCard__descriptionContainer">
               <div className="SlideCard__description">
-                <h3>{event.title}</h3>
-                <p>{event.description}</p>
-                <div>{getMonth(new Date(event.date))}</div>  
+                <h3>{slider.title}</h3>
+                <p>{slider.description}</p>
+                <div>{getMonth(new Date(slider.date))}</div>  
               </div>
             </div>
           </div>
-          <div className="SlideCard__paginationContainer"> 
-              {byDateDesc.map((check, indexSpan) => (
+          ))}
+           <div className="SlideCard__paginationContainer"> 
+              {byDateDesc?.map((check, indexSpan) => (
                 <span
-                  key={check.id}
+                  key={check.title}
                   className={`SlideCard__pagination${index === indexSpan ? "--active" : ""}`}
                 />
               ))}
-            </div>
-        </>
-      ))}
+            </div> 
     </div>
   );
 };

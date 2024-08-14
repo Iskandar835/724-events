@@ -52,8 +52,6 @@ pour chaque events et une event cards pour chaque event.
 Puis on a un div "pagination" qui contient .... (revoir plus tard)
 
 
-******************************************************
-
 description composant DataContext : 
 Tout ce composant est utiliser pour pouvoir gerer l'utilisation des Data et les transmettre au enfants sans 
 passer par les props. A noter qu'il est programer de la meme façon que pourrais recuperer des Data sur une api
@@ -62,14 +60,6 @@ dans le fichier (events.json).
 La solution consisterais a changer tout les appels fetch asynchrone par une simple recuperation de Data via un import 
 du fichier events.json car la plupart des erreurs dans la console sont peut etre lié au faite que que l'ai data sont demander 
 mais il y l'async qui bloque. 
-
-
-A FAIRE TRES IMPORTANT !! IL PERMET DE COMPRENDRE LA RECUPERATION DES DATA ET AUSSI COMMENT REGLER LE PROBLEME ASYNC 
-QUI NOUS RENVOI LES ERREUR EN CONSOLE. 
-
-******************************************************
-
-
 
 
 Probleme filter REGLER:
@@ -86,25 +76,27 @@ Chemin de la props "date" entierement modifier et remplacer par periode + ajout 
 ajout de style et d'un modale background pour rendre la modale plus propre
 
 
-Probleme erreur dans la console PAS REGLER: 
-La plupart des erreurs dans la console sont peut etre du a l'appel async de DataProvider, donc il faudrait 
-peut etre ne plus rendre async DataProvider (revenir dessus plus tard), expliquation:
-Pour le composant events (
-    imagesrc, title sont des props required mais au moment de l'affichage ils sont undefined
-    pendant peut etre une fraction de seconde mais l'errreur s'affiche, surement a cause de async
-    (solution en cours)
-)
-Pour le composant slider(
-    probleme de key unique pour les elements mapper comme les images du slider et le bullet point,
-    apres plusieurs essaie avec meme un essaie de key sur l'index (contrage d'erreur) l'erreur
-    persiste car surement async mais trop de temps
-)
+Apres un pacson de recherche le probleme dans le composant Slider concernant les unique Key ne venez que du
+fragment (<> </>) c'est ce qui causer tout le bug avec le map slider qui englober aussi le map check des bullet point.
+Ducoup supression des fragments, et separation bien distinct des deux map (slider et check) 
+Utilisation de useMemo dans les props de DataProvider pour eviter de les rappeler a chaque render, useMemo 
+utilise une fonction callback et un tableau de dependance pour stocker les valeurs et eviter de les 
+recharger a render
+
+Probleme derniere prestation card REGLER: 
+Ajout d'un nouveau composant FooterCard pour pouvoir rendre plus propre le composant Home. 
+Dans ce composant on a un d'abord un appel a la Data, ensuite on fouille un peu dans cette donnée pour pouvoir 
+acceder au dernier event. Ajout d'un traitement d'erreur car sinon gros bug de secu liée au non traitement
+de l'erreur. Puis Event qui a etait importer recois des props.  
 
 
 
-note depuis dernier commit: 
 
 
-A FAIRE ASAP: 
-- probleme async (en cours d'experimentation) (ne pas oublier de mettre Events au propre)
+note depuis dernier commit:
+optimisation FooterCards, optimisation Logo (font-size ect) pour enlever erreur console, slider remis a < 2 et probleme
+des unique key regler, manipulation du DataContext (useMemo), probleme unique key EventList regler (reste a voir pour la pagination)
+
+
+A FAIRE ASAP:   
 - regler probleme formulaire 

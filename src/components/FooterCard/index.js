@@ -3,15 +3,11 @@ import { useData } from "../../contexts/DataContext";
 
 
 function FooterCard () {
-    const { data, error } = useData()
+    const { data } = useData()
     const lastEvent = data?.events[data.events.length - 1]
 
-    if (error) {
-        return <div>Error: {error.message}</div>;
-      }
-    
       if (!data) {
-        return <div>Loading...</div>;
+        return <div>Désolé, nous rencontrons une erreur.</div>;
       }
 
     return(
