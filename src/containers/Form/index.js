@@ -9,13 +9,15 @@ const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 500)
 const Form = ({ onSuccess, onError }) => {
   const [sending, setSending] = useState(false);
   const sendContact = useCallback(
-    async (evt) => {
-      evt.preventDefault();
+    async (event) => {
+      event.preventDefault();
       setSending(true);
-      // We try to call mockContactApi
+      const form = event.target;
       try {
         await mockContactApi();
         setSending(false);
+        onSuccess();
+        form.reset();
       } catch (err) {
         setSending(false);
         onError(err);
@@ -23,12 +25,13 @@ const Form = ({ onSuccess, onError }) => {
     },
     [onSuccess, onError]
   );
+
   return (
     <form onSubmit={sendContact}>
       <div className="row">
         <div className="col">
-          <Field placeholder="" label="Nom" />
-          <Field placeholder="" label="Prénom" />
+          <Field placeholder="" label="Nom"/>
+          <Field placeholder="" label="Prénom"/>
           <Select
             selection={["Personel", "Entreprise"]}
             onChange={() => null}
@@ -36,7 +39,7 @@ const Form = ({ onSuccess, onError }) => {
             type="large"
             titleEmpty
           />
-          <Field placeholder="" label="Email" />
+          <Field placeholder="" label="Email"/>
           <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
             {sending ? "En cours" : "Envoyer"}
           </Button>

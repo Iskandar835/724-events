@@ -90,13 +90,18 @@ acceder au dernier event. Ajout d'un traitement d'erreur car sinon gros bug de s
 de l'erreur. Puis Event qui a etait importer recois des props.  
 
 
+probleme formualaire d'envoi REGLER: 
+Apres verification c'était simplement la props OnSuccess qui n'etait pas passer dans le "try" car c'est cette 
+props qui permet de rendre setIsOpenned "true"
+
 
 
 
 note depuis dernier commit:
-optimisation FooterCards, optimisation Logo (font-size ect) pour enlever erreur console, slider remis a < 2 et probleme
-des unique key regler, manipulation du DataContext (useMemo), probleme unique key EventList regler (reste a voir pour la pagination)
 
 
 A FAIRE ASAP:   
-- regler probleme formulaire 
+- peut etre revoir footercards (pas le bon event) car il faut la derniere presta par rapport a la date et non a l'id
+- (facultatif) revoir animation du select et aussi la photo un peu trop haute sur les eventscards (maybe max-heght) 
+
+note* test effectuer il sont tous passer
