@@ -100,8 +100,106 @@ props qui permet de rendre setIsOpenned "true"
 note depuis dernier commit:
 
 
-A FAIRE ASAP:   
-- peut etre revoir footercards (pas le bon event) car il faut la derniere presta par rapport a la date et non a l'id
+A FAIRE ASAP:  
+- Revenir sur les dates des events cards car periode ne sert a rien.   
+- peut etre revoir footercards (pas le bon event) car il faut la derniere presta par rapport a la date et non a l'id.
 - (facultatif) revoir animation du select et aussi la photo un peu trop haute sur les eventscards (maybe max-heght) 
+- Pour le cahier de recette il faudra le remplir depuis l'ordi du bureau (gros fichier word mais tres rapide) et ce le transferer. 
 
-note* test effectuer il sont tous passer
+
+2 erreur de test: 
+1 - la date des event initier sur avril (je sais pas pourquoi), attente reponse etudiant ou mentor car perdu entre 
+    "periode" et "date"
+2 - lié au test de de Events, il me dit que je doit avoir un eventcards "forum #productCON"
+
+
+Erreurs en test: 
+
+
+- The above error occurred in the <div> component:
+
+          at div
+          at div
+          at div
+          at EventCard (C:\Users\sacha\OneDrive\Bureau\projet_9\src\components\EventCard\index.js:6:3)    
+
+      Consider adding an error boundary to your tree to customize error handling behavior.
+      Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+
+
+
+
+-  Error: Uncaught [Error: Objects are not valid as a React child (found: [object Date]). If you meant to render a collection of children, use an array instead.]
+
+
+
+
+
+
+-   ● When a event card is created › an image is display with alt value                                     
+                                                     
+    Objects are not valid as a React child (found: [object Date]). If you meant to render a collection of children, use an array instead.                      
+                                                     
+      4 | describe("When a event card is created", () => {                                                
+      5 |   it("an image is display with alt value", () => {
+    > 6 |     render(<EventCard imageSrc="http://src-image" imageAlt="image-alt-text" date={new Date("2022-04-01")} 
+        |     ^
+      7 |     title="test event"
+      8 |
+      9 |     label="test label"
+
+
+
+
+
+-at Object.<anonymous> (src/components/EventCard/index.test.js:6:5)
+
+  ● When a event card is created › a title, a label and a month are displayed
+
+    Objects are not valid as a React child (found: [object Date]). If you meant to render a collection of children, use an array instead.
+
+      14 |   });
+      15 |   it("a title, a label and a month are displayed", () => {
+    > 16 |     render(
+         |     ^
+      17 |       <EventCard
+      18 |         imageSrc="http://src-image"       
+      19 |         imageAlt="image-alt-text"
+      -     at Object.<anonymous> (src/components/EventCard/index.test.js:16:5)
+
+  ● When a event card is created › with small props › a modifier small is added
+
+    Objects are not valid as a React child (found: [object Date]). If you meant to render a collection of children, use an array instead.
+
+      32 |   describe("with small props", () => {    
+      33 |     it("a modifier small is added", () => {
+    > 34 |       render(
+         |       ^
+      35 |         <EventCard
+      36 |           imageSrc="http://src-image"     
+      37 |           imageAlt="image-alt-text"  
+      
+      
+
+
+
+- at Object.<anonymous> (src/components/EventCard/index.test.js:34:7)
+
+ FAIL  src/containers/Events/index.test.js
+  ● When Events is created › and we select a category › an filtered list is displayed                     
+                                                     
+    expect(element).not.toBeInTheDocument()          
+                                                     
+    expected document not to contain element, found <div class="EventCard__title">Forum #productCON</div> instead                                              
+
+      84 |
+      85 |       await screen.findByText("Conférence #productCON");
+    > 86 |       expect(screen.queryByText("Forum #productCON")).not.toBeInTheDocument();
+         |                                           
+                ^
+      87 |     });
+      88 |   });
+      89 |
+
+      at Object.<anonymous> (src/containers/Events/index.test.js:86:59)

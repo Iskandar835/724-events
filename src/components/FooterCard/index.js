@@ -1,5 +1,6 @@
 import EventCard from "../EventCard";
 import { useData } from "../../contexts/DataContext";
+import { getMonth } from "../../helpers/Date";
 
 
 function FooterCard () {
@@ -14,7 +15,7 @@ function FooterCard () {
         <EventCard
           imageSrc={lastEvent.cover}
           title={lastEvent.title}
-          periode={lastEvent.periode.substring(9)}
+          date={getMonth(new Date(lastEvent.date))}
           label= {lastEvent.type}
           small
         />

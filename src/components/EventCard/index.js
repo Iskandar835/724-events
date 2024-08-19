@@ -5,7 +5,7 @@ import "./style.scss";
 const EventCard = ({
   imageSrc,
   imageAlt,
-  periode,
+  date = new Date(),
   title,
   label,
   small = false,
@@ -22,7 +22,7 @@ const EventCard = ({
       </div>
       <div className="EventCard__descriptionContainer">
         <div className="EventCard__title">{title}</div>
-        <div className="EventCard__month">{periode}</div>
+        <div className="EventCard__month">{date}</div>
       </div>
     </div>
   );
@@ -30,7 +30,7 @@ const EventCard = ({
 EventCard.propTypes = {
   imageSrc: PropTypes.string,
   imageAlt: PropTypes.string,
-  periode: PropTypes.string,
+  date: PropTypes.string,
   title: PropTypes.string,
   small: PropTypes.bool,
   label: PropTypes.string,
@@ -39,7 +39,7 @@ EventCard.propTypes = {
 EventCard.defaultProps = {
   imageSrc: "/images/image_par_defaut.png",
   imageAlt: "image de l'evenement",
-  periode: "date",
+  date: "Date",
   title: "Nom de l'évenement",
   label: "type d'évenement",
   small: false
