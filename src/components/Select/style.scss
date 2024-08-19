@@ -42,13 +42,15 @@
       margin: 0;
       text-transform: capitalize;
     }
-
   }
   input {
     width: 16px;
     height: 16px;
     min-width: 16px;
     margin-right: 16px;
+    cursor: pointer;
+  }
+  span {
     cursor: pointer;
   }
   button {

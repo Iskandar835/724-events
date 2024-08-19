@@ -31,14 +31,14 @@ const Select = ({
           {!collapsed && (
             <> 
               {!titleEmpty && (
-                <li onClick={() =>{ changeValue(null); setCollapsed(!collapsed)}}
-                    onKeyDown={() =>{ changeValue(null); setCollapsed(!collapsed)}}>
+                <li onClick={() =>{changeValue(null); setCollapsed(!collapsed)}}
+                    onKeyDown={() =>{changeValue(null); setCollapsed(!collapsed)}}>
                   <input defaultChecked={!value} name="selected" type="radio" />{" "}
-                  Toutes
+                  <span>Toutes</span>
                 </li>
               )}
               {selection.map((s) => (
-                <li key={s} onClick={() => changeValue(s) } onKeyDown={ () => changeValue(s) }> 
+                <li key={s} onClick={() => {changeValue(s); onChange(s)}} onKeyDown={() => {changeValue(s); onChange(s)}}> 
                   <input
                     defaultChecked={value === s}
                     name="selected"
@@ -47,7 +47,7 @@ const Select = ({
                       onChange(s);
                     }}
                   />
-                  {s}
+                  <span>{s}</span>
                 </li>
               ))}
             </> 

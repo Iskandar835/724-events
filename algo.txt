@@ -69,7 +69,9 @@ car il renvoyer deux fois la meme valeur (pas genant pour la fonctionnaliter des
 Et que dans le composant Select il manquait dans l'élément input de selection.map (onChange={() => { onChange(s) }}).
 PAR CONTRE PROBLEME D'AFFICHAGE J'AI SEULEMENT LA PAGE 1 QUI EST FILTRER LA 2eme N'EST PAS CALCULER, donc pour 
 ce faire separation de la varaible filteredEvents en deux variable, une qui calcule les conditions de filtrages
-(filteredByType) et une qui s'occupe de l'affichage des deux pages (filteredEvents) en faisant un slice de (filteredByType)
+(filteredByType) et une qui s'occupe de l'affichage des deux pages (filteredEvents) en faisant un slice de (filteredByType).
+Ajout sur la balise li du map de selection, deux font fonction (changeValue et onChange) qui permettent lors du clique sur le texte
+de changer le filtre et de fermer la collapse. Ajout d'un span pour rendre le texte avec le cursor pointer. 
 
 Probleme date event cards REGLER: 
 Chemin de la props "date" entierement modifier et remplacer par periode + ajout de substring pour recuperer que le mois de la DATA
@@ -108,49 +110,3 @@ A FAIRE ASAP:
 - Pour le cahier de recette il faudra le remplir depuis l'ordi du bureau (gros fichier word mais tres rapide) et ce le transferer. 
 
 
-1 erreur de test: 
-
-1 - lié au test de de Events, il me dit que je doit avoir un eventcards "forum #productCON"
-
-
-Erreurs en test: 
-
-- at Object.<anonymous> (src/components/EventCard/index.test.js:34:7)
-
- FAIL  src/containers/Events/index.test.js
-  ● When Events is created › and we select a category › an filtered list is displayed                     
-                                                     
-    expect(element).not.toBeInTheDocument()          
-                                                     
-    expected document not to contain element, found <div class="EventCard__title">Forum #productCON</div> instead                                              
-
-      84 |
-      85 |       await screen.findByText("Conférence #productCON");
-    > 86 |       expect(screen.queryByText("Forum #productCON")).not.toBeInTheDocument();
-         |                                           
-                ^
-      87 |     });
-      88 |   });
-      89 |
-
-      at Object.<anonymous> (src/containers/Events/index.test.js:86:59)
-
-traduction: at Object.<anonymous> (src/components/EventCard/index.test.js:34:7)
-
-FAIL src/containers/Events/index.test.js
-● Lorsque Events est créé › et que nous sélectionnons une catégorie › une liste filtrée s'affiche
-
-expect(element).not.toBeInTheDocument()
-
-document attendu ne contenant pas d'élément, trouvé à la place <div class="EventCard__title">Forum #productCON</div>
-
-84 |
-85 | wait screen.findByText("Conférence #productCON");
-> 86 | expect(screen.queryByText("Forum #productCON")).not.toBeInTheDocument();
-|
-^
-87 | });
-88 | });
-89 |
-
-à Object.<anonymous> (src/containers/Events/index.test.js:86:59)
