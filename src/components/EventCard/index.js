@@ -1,16 +1,20 @@
 import PropTypes from "prop-types";
+import { getMonth } from "../../helpers/Date";
 
 import "./style.scss";
 
-const EventCard = ({
+function EventCard ({
   imageSrc,
   imageAlt,
-  date = new Date(),
+  date,
   title,
   label,
   small = false,
   ...props
-}) => (
+}) {
+  const displayDate = date instanceof Date ? getMonth(date) : date;
+
+  return (
     <div
       data-testid="card-testid"
       className={`EventCard${small ? " EventCard--small" : ""}`}
@@ -22,15 +26,17 @@ const EventCard = ({
       </div>
       <div className="EventCard__descriptionContainer">
         <div className="EventCard__title">{title}</div>
-        <div className="EventCard__month">{date}</div>
+        <div className="EventCard__month">{displayDate}</div>
       </div>
     </div>
-  );
+  )
+}
+  
 
 EventCard.propTypes = {
   imageSrc: PropTypes.string,
   imageAlt: PropTypes.string,
-  date: PropTypes.string,
+  date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]), 
   title: PropTypes.string,
   small: PropTypes.bool,
   label: PropTypes.string,

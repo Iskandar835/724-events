@@ -73,7 +73,9 @@ ce faire separation de la varaible filteredEvents en deux variable, une qui calc
 
 Probleme date event cards REGLER: 
 Chemin de la props "date" entierement modifier et remplacer par periode + ajout de substring pour recuperer que le mois de la DATA
-ajout de style et d'un modale background pour rendre la modale plus propre
+ajout de style et d'un modale background pour rendre la modale plus propre // Cette methode n'etais pas la bonne (d'apres OCR student mais voir avec mentor),
+Date des events cards regler avec getMonth, toute la conversion de l'ISO se prepare dans events cards (condition du test), puis dans Events le chemin de la props
+est donnée avec "new date" pour convertir ISO.  
 
 
 Apres un pacson de recherche le probleme dans le composant Slider concernant les unique Key ne venez que du
@@ -100,89 +102,18 @@ props qui permet de rendre setIsOpenned "true"
 note depuis dernier commit:
 
 
-A FAIRE ASAP:  
-- Revenir sur les dates des events cards car periode ne sert a rien.   
+A FAIRE ASAP:     
 - peut etre revoir footercards (pas le bon event) car il faut la derniere presta par rapport a la date et non a l'id.
 - (facultatif) revoir animation du select et aussi la photo un peu trop haute sur les eventscards (maybe max-heght) 
 - Pour le cahier de recette il faudra le remplir depuis l'ordi du bureau (gros fichier word mais tres rapide) et ce le transferer. 
 
 
-2 erreur de test: 
-1 - la date des event initier sur avril (je sais pas pourquoi), attente reponse etudiant ou mentor car perdu entre 
-    "periode" et "date"
-2 - lié au test de de Events, il me dit que je doit avoir un eventcards "forum #productCON"
+1 erreur de test: 
+
+1 - lié au test de de Events, il me dit que je doit avoir un eventcards "forum #productCON"
 
 
 Erreurs en test: 
-
-
-- The above error occurred in the <div> component:
-
-          at div
-          at div
-          at div
-          at EventCard (C:\Users\sacha\OneDrive\Bureau\projet_9\src\components\EventCard\index.js:6:3)    
-
-      Consider adding an error boundary to your tree to customize error handling behavior.
-      Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
-
-
-
-
-
--  Error: Uncaught [Error: Objects are not valid as a React child (found: [object Date]). If you meant to render a collection of children, use an array instead.]
-
-
-
-
-
-
--   ● When a event card is created › an image is display with alt value                                     
-                                                     
-    Objects are not valid as a React child (found: [object Date]). If you meant to render a collection of children, use an array instead.                      
-                                                     
-      4 | describe("When a event card is created", () => {                                                
-      5 |   it("an image is display with alt value", () => {
-    > 6 |     render(<EventCard imageSrc="http://src-image" imageAlt="image-alt-text" date={new Date("2022-04-01")} 
-        |     ^
-      7 |     title="test event"
-      8 |
-      9 |     label="test label"
-
-
-
-
-
--at Object.<anonymous> (src/components/EventCard/index.test.js:6:5)
-
-  ● When a event card is created › a title, a label and a month are displayed
-
-    Objects are not valid as a React child (found: [object Date]). If you meant to render a collection of children, use an array instead.
-
-      14 |   });
-      15 |   it("a title, a label and a month are displayed", () => {
-    > 16 |     render(
-         |     ^
-      17 |       <EventCard
-      18 |         imageSrc="http://src-image"       
-      19 |         imageAlt="image-alt-text"
-      -     at Object.<anonymous> (src/components/EventCard/index.test.js:16:5)
-
-  ● When a event card is created › with small props › a modifier small is added
-
-    Objects are not valid as a React child (found: [object Date]). If you meant to render a collection of children, use an array instead.
-
-      32 |   describe("with small props", () => {    
-      33 |     it("a modifier small is added", () => {
-    > 34 |       render(
-         |       ^
-      35 |         <EventCard
-      36 |           imageSrc="http://src-image"     
-      37 |           imageAlt="image-alt-text"  
-      
-      
-
-
 
 - at Object.<anonymous> (src/components/EventCard/index.test.js:34:7)
 
@@ -203,3 +134,23 @@ Erreurs en test:
       89 |
 
       at Object.<anonymous> (src/containers/Events/index.test.js:86:59)
+
+traduction: at Object.<anonymous> (src/components/EventCard/index.test.js:34:7)
+
+FAIL src/containers/Events/index.test.js
+● Lorsque Events est créé › et que nous sélectionnons une catégorie › une liste filtrée s'affiche
+
+expect(element).not.toBeInTheDocument()
+
+document attendu ne contenant pas d'élément, trouvé à la place <div class="EventCard__title">Forum #productCON</div>
+
+84 |
+85 | wait screen.findByText("Conférence #productCON");
+> 86 | expect(screen.queryByText("Forum #productCON")).not.toBeInTheDocument();
+|
+^
+87 | });
+88 | });
+89 |
+
+à Object.<anonymous> (src/containers/Events/index.test.js:86:59)

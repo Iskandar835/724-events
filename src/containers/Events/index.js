@@ -4,7 +4,6 @@ import Select from "../../components/Select";
 import { useData } from "../../contexts/DataContext";
 import Modal from "../Modal";
 import ModalEvent from "../ModalEvent";
-import { getMonth } from "../../helpers/Date";
 
 import "./style.css";
 
@@ -47,7 +46,7 @@ const EventList = () => {
                     onClick={() => setIsOpened(true)}
                     imageSrc={event.cover}
                     title={event.title}
-                    date={getMonth(new Date(event.date))}
+                    date={new Date(event.date)}
                     label={event.type}
                   />
                 )}
