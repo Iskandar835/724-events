@@ -98,16 +98,16 @@ probleme formualaire d'envoi REGLER:
 Apres verification c'était simplement la props OnSuccess qui n'etait pas passer dans le "try" car c'est cette 
 props qui permet de rendre setIsOpenned "true"
 
+TOUT LES TEST PASS, PLUS AUCUNE ERREUR EN CONSOLE.
 
 
 
 note depuis dernier commit:
+ajout style Select, 
 
 
-A FAIRE ASAP:
-- checker chaque composant pour voir si il a pas de contrage d'erreur eslint (modalEvent en a un sur les props)     
+A FAIRE ASAP:     
 - peut etre revoir footercards (pas le bon event) car il faut la derniere presta par rapport a la date et non a l'id.
-- (facultatif) revoir animation du select et aussi la photo un peu trop haute sur les eventscards (maybe max-heght) 
 - Pour le cahier de recette il faudra le remplir depuis l'ordi du bureau (gros fichier word mais tres rapide) et ce le transferer. 
 
 

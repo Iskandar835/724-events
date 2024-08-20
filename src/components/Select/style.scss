@@ -27,8 +27,8 @@
   min-height: 60px;
   display: flex;
   position: absolute;
-  z-index: 1; 
-  ul {
+  z-index: 1;
+   ul {
     position: relative;
     list-style: none;
     width: 300px;
@@ -51,6 +51,7 @@
     cursor: pointer;
   }
   span {
+    color: #000;
     cursor: pointer;
   }
   button {
