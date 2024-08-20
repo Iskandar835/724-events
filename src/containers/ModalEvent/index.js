@@ -33,8 +33,14 @@ const ModalEvent = ({ event }) => (
   );
 
 ModalEvent.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  event: PropTypes.any.isRequired,
+  event: PropTypes.shape({
+    cover: PropTypes.string,
+    title: PropTypes.string,
+    periode: PropTypes.string,
+    description: PropTypes.string,
+    nb_guesses: PropTypes.number,
+    prestations: PropTypes.arrayOf(PropTypes.string),  
+  }).isRequired,
 }
 
 export default ModalEvent;
