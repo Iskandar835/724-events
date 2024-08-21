@@ -1,5 +1,4 @@
-D'ABORD COMPRENDRE LE CODE DANS TOUT SES DETAILS ET ENSUITE PROPOSER DES SOLUTIONS:
-
+EXPLICATION DE CERTAINE PARTIE DU CODE UN PEU COMPLIQUER A COMPRENDRE:
 
 Description integrale Composant Select: 
 
@@ -23,11 +22,6 @@ Maintenant la ul se ferme
 Ensuite on a un input que lui et ses props n'ont l'aire de servir a rien 
 Et pour finir on a un button qui est notre chevron qui prend en classe des conditons en cas de 
 collapse falsy ou truly et en onClick il change l'etat de collapsed.     
-
-Conclusion: 
-Le composant Select est un composant generique qui sera utiliser aussi dans le formulaire, il 
-est bien preparer en prop et en logique, il n'a quasiment aucun dure. Je ne pense pas que le probleme
-des gestions de filtres vienne d'ici. 
  
 
 Decription integrale Composant Events:
@@ -51,63 +45,74 @@ Ensuite on a une div "ListContainer", a l'interieur de celle ci on a filtered.ma
 pour chaque events et une event cards pour chaque event. 
 Puis on a un div "pagination" qui contient .... (revoir plus tard)
 
-
 description composant DataContext : 
 Tout ce composant est utiliser pour pouvoir gerer l'utilisation des Data et les transmettre au enfants sans 
 passer par les props. A noter qu'il est programer de la meme façon que pourrais recuperer des Data sur une api
 via un appel reseau (methode fetch). Chose qui est inutile car nos données sont deja presente en dur dans notre dossiers
 dans le fichier (events.json).
-La solution consisterais a changer tout les appels fetch asynchrone par une simple recuperation de Data via un import 
-du fichier events.json car la plupart des erreurs dans la console sont peut etre lié au faite que que l'ai data sont demander 
-mais il y l'async qui bloque. 
 
 
-Probleme filter REGLER:
-Apres verification les filtres marchent, l'erreur etait du au faite que dans le composant Events
+SOLUTIONS :
+
+filters:
+L'erreur etait du au faite que dans le composant Events
 filteredEvents manquer de cette condition ((!type || event.type === type) &&), modif aussi du ternaire
 car il renvoyer deux fois la meme valeur (pas genant pour la fonctionnaliter des filtres mais plus propre)
 Et que dans le composant Select il manquait dans l'élément input de selection.map (onChange={() => { onChange(s) }}).
 PAR CONTRE PROBLEME D'AFFICHAGE J'AI SEULEMENT LA PAGE 1 QUI EST FILTRER LA 2eme N'EST PAS CALCULER, donc pour 
 ce faire separation de la varaible filteredEvents en deux variable, une qui calcule les conditions de filtrages
 (filteredByType) et une qui s'occupe de l'affichage des deux pages (filteredEvents) en faisant un slice de (filteredByType).
-Ajout sur la balise li du map de selection, deux font fonction (changeValue et onChange) qui permettent lors du clique sur le texte
-de changer le filtre et de fermer la collapse. Ajout d'un span pour rendre le texte avec le cursor pointer. 
+Ajout sur la balise li du map de selection, deux fonction (changeValue et onChange) qui permettent lors du clique sur le texte
+de changer le filtre et de fermer la collapse. Ajout d'un span pour rendre le texte avec le cursor pointer et de couleur noir sinon 
+invisible dans la partie formualire. 
 
-Probleme date event cards REGLER: 
-Chemin de la props "date" entierement modifier et remplacer par periode + ajout de substring pour recuperer que le mois de la DATA
-ajout de style et d'un modale background pour rendre la modale plus propre // Cette methode n'etais pas la bonne (d'apres OCR student mais voir avec mentor),
-Date des events cards regler avec getMonth, toute la conversion de l'ISO se prepare dans events cards (condition du test), puis dans Events le chemin de la props
-est donnée avec "new date" pour convertir ISO.  
+event cards: 
+Ajout de style et d'un modale background pour rendre la modale plus propre. 
+Date des events cards regler avec getMonth, toute la conversion de l'ISO se prepare dans events cards (condition du test), 
+puis dans Events le chemin de la props est donnée avec "new date" pour convertir ISO. 
 
-
+Slider:
 Apres un pacson de recherche le probleme dans le composant Slider concernant les unique Key ne venez que du
 fragment (<> </>) c'est ce qui causer tout le bug avec le map slider qui englober aussi le map check des bullet point.
 Ducoup supression des fragments, et separation bien distinct des deux map (slider et check) 
+
+DataContext:
 Utilisation de useMemo dans les props de DataProvider pour eviter de les rappeler a chaque render, useMemo 
 utilise une fonction callback et un tableau de dependance pour stocker les valeurs et eviter de les 
 recharger a render
 
-Probleme derniere prestation card REGLER: 
+FooterCard: 
 Ajout d'un nouveau composant FooterCard pour pouvoir rendre plus propre le composant Home. 
 Dans ce composant on a un d'abord un appel a la Data, ensuite on fouille un peu dans cette donnée pour pouvoir 
 acceder au dernier event. Ajout d'un traitement d'erreur car sinon gros bug de secu liée au non traitement
 de l'erreur. Puis Event qui a etait importer recois des props.  
 
-
-probleme formualaire d'envoi REGLER: 
+formualaire: 
 Apres verification c'était simplement la props OnSuccess qui n'etait pas passer dans le "try" car c'est cette 
-props qui permet de rendre setIsOpenned "true"
+props qui permet de rendre setIsOpenned "true", ajout d'un form.reset() pour permettre le nettoyage des champs,
+a noter qu'il est placer en dernier du "try" pour eviter que les champs ne se vide avant l'envoi du formulaire. 
+
+Header: 
+lien d'encre entierement fonctionnel car de base il ne l'était pas. 
+
+HTML:
+Nettoyage du code html + ajout de resultat enrichie (SEO) + changement de favicon, nettoyage de manifest.json 
+
+Fichier: 
+nettoyage et ajustage de chaque fichier qui contenais des contrage d'erreur ESLINT. 
+
+Home:
+Chnagement des liens des icons footer remplacer par les bons. 
+
+
 
 TOUT LES TEST PASS, PLUS AUCUNE ERREUR EN CONSOLE.
 
 
 
 note depuis dernier commit:
-ajout style Select, 
 
 
-A FAIRE ASAP:     
-- peut etre revoir footercards (pas le bon event) car il faut la derniere presta par rapport a la date et non a l'id.
-- Pour le cahier de recette il faudra le remplir depuis l'ordi du bureau (gros fichier word mais tres rapide) et ce le transferer. 
 
-
+A FAIRE UN FOIS SESSION DE MENTORAT FAITE:     
+- peut etre empecher envoi du form si les fiels sont empty.
